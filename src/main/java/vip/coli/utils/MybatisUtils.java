@@ -1,4 +1,4 @@
-package vip.coli.util;
+package vip.coli.utils;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -12,11 +12,11 @@ import java.io.Reader;
 /*
 工具类
 * */
-public class ColiUtils {
+public class MybatisUtils {
     private static SqlSessionFactory sqlMapper = null;
     static {
         try{
-            Reader reader = Resources.getResourceAsReader("coli-config.xml");
+            Reader reader = Resources.getResourceAsReader("Mybatis-config.xml");
             sqlMapper = new SqlSessionFactoryBuilder().build(reader);
         } catch (IOException e) {
             e.printStackTrace();

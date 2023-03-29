@@ -1,8 +1,8 @@
 package vip.coli.test;
 
 import org.apache.ibatis.session.SqlSession;
-import vip.coli.aa.Student;
-import vip.coli.util.ColiUtils;
+import vip.coli.pojo.Student;
+import vip.coli.utils.MybatisUtils;
 
 import java.awt.*;
 import java.util.List;
@@ -62,7 +62,7 @@ public class NewTest {
                         System.out.print("请输入学生性别:");
                         String sex = input.nextLine();
                         robot.delay(300);
-                        SqlSession session = ColiUtils.getSession();
+                        SqlSession session = MybatisUtils.getSession();
                         Student s = new Student();
                         if (name != null && name.length() > 0) {
                             System.out.println("姓名中包含”" + name + "“的学生如下：");
@@ -95,7 +95,7 @@ public class NewTest {
 
                 case 2:
                     while (flag2) {
-                        SqlSession session = ColiUtils.getSession();
+                        SqlSession session = MybatisUtils.getSession();
                         Student s = new Student();
                         List<Student> students = session.selectList("findShiba",s);
                         System.out.println("年龄小于18的学生如下：");
@@ -109,7 +109,7 @@ public class NewTest {
 
                 case 3:
                     while (flag2) {
-                        SqlSession session = ColiUtils.getSession();
+                        SqlSession session = MybatisUtils.getSession();
                         Student s = new Student();
                         System.out.println("欢迎打开修改系统，所有学生信息如下：");
                         robot.delay(600);
@@ -142,7 +142,7 @@ public class NewTest {
                         session.commit();
                         robot.delay(1000);
                         System.out.println("修改成功！");
-                        SqlSession newsession = ColiUtils.getSession();
+                        SqlSession newsession = MybatisUtils.getSession();
                         System.out.println("新的学生信息如下：");
                         robot.delay(600);
                         Student ns = session.selectOne("findById", s);
@@ -153,7 +153,7 @@ public class NewTest {
 
                 case 4:
                     while (flag2) {
-                        SqlSession session = ColiUtils.getSession();
+                        SqlSession session = MybatisUtils.getSession();
                         Student s = new Student();
                         System.out.println("欢迎打开删除系统，所有学生信息如下：");
                         robot.delay(600);
@@ -171,7 +171,7 @@ public class NewTest {
                         session.commit();
                         robot.delay(1000);
                         System.out.println("删除成功！");
-                        SqlSession newsession = ColiUtils.getSession();
+                        SqlSession newsession = MybatisUtils.getSession();
                         System.out.println("新的所有的学生信息如下：");
                         robot.delay(600);
                         Student ns = new Student();
@@ -186,7 +186,7 @@ public class NewTest {
 
                 case 5:
                     while (flag2) {
-                        SqlSession session = ColiUtils.getSession();
+                        SqlSession session = MybatisUtils.getSession();
                         Student s = new Student();
                         System.out.println("欢迎打开新增系统，所有学生信息如下：");
                         robot.delay(600);
@@ -219,7 +219,7 @@ public class NewTest {
                         session.commit();
                         robot.delay(1000);
                         System.out.println("添加成功！");
-                        SqlSession newsession = ColiUtils.getSession();
+                        SqlSession newsession = MybatisUtils.getSession();
                         System.out.println("新的学生信息如下：");
                         robot.delay(600);
                         Student ns = session.selectOne("findById", s);

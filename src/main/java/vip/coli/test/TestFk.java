@@ -1,8 +1,8 @@
 package vip.coli.test;
 
 import org.apache.ibatis.session.SqlSession;
-import vip.coli.aa.Student;
-import vip.coli.util.ColiUtils;
+import vip.coli.pojo.Student;
+import vip.coli.utils.MybatisUtils;
 
 import java.util.List;
 import java.util.Scanner;
@@ -77,7 +77,7 @@ public class TestFk {
 
     /*更新学生信息*/
     public static void main(String[] args) {
-        SqlSession session = ColiUtils.getSession();
+        SqlSession session = MybatisUtils.getSession();
         Student s = new Student();
         System.out.println("欢迎打开修改系统，所有学生信息如下：");
         List<Student> list;

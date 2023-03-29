@@ -1,4 +1,4 @@
-package vip.coli.aa;
+package vip.coli.pojo;
 
 /*
 人员持久化的类

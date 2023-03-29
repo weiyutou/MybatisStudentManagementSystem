@@ -3,16 +3,16 @@
         PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="vip.coli.aa.Student">
+<mapper namespace="vip.coli.pojo.Student">
     <!--单条件查询-->
     <!--找不到18的同学-->
-    <select id="findShiba" parameterType="vip.coli.aa.Student" resultType="vip.coli.aa.Student">
+    <select id="findShiba" parameterType="vip.coli.pojo.Student" resultType="vip.coli.pojo.Student">
         select * from tb_student where 18 > age
     </select>
-    <select id="findAll" parameterType="vip.coli.aa.Student" resultType="vip.coli.aa.Student">
+    <select id="findAll" parameterType="vip.coli.pojo.Student" resultType="vip.coli.pojo.Student">
         select * from tb_student
     </select>
-    <select id="findById" parameterType="vip.coli.aa.Student" resultType="vip.coli.aa.Student">
+    <select id="findById" parameterType="vip.coli.pojo.Student" resultType="vip.coli.pojo.Student">
         select * from tb_student where id = #{id}
     </select>
 
@@ -23,7 +23,7 @@
     当用户输入学生姓名和学号、专业为空，而年龄不为空时候，只根据年龄查询
     当用户输入学生姓名和学号、专业、年龄为空，而性别不为空时候，只根据性别查询-->
 
-    <select id="findStudent" parameterType="vip.coli.aa.Student" resultType="vip.coli.aa.Student">
+    <select id="findStudent" parameterType="vip.coli.pojo.Student" resultType="vip.coli.pojo.Student">
         select*from tb_student where 1 = 1
         <if test="name != null and name != ''">
             and name like concat('%',#{name},'%')
@@ -43,7 +43,7 @@
     </select>
 
     <!--更新学生数据-->
-    <update id="update" parameterType="vip.coli.aa.Student">
+    <update id="update" parameterType="vip.coli.pojo.Student">
        update tb_student
        <set>
            <if test="name != null and name != ''">
@@ -70,7 +70,7 @@
         delete from tb_student where id=#{id}
     </delete>
     <!--添加学生-->
-    <insert id="add" parameterType="vip.coli.aa.Student">
+    <insert id="add" parameterType="vip.coli.pojo.Student">
         insert into tb_student(id,name,xuehao,zhuanye,age,sex) values(#{id},#{name},#{xuehao},#{zhuanye},#{age},#{sex});
     </insert>
 
