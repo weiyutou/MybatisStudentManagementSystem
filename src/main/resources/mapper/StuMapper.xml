@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="vip.coli.aa.Student">
+    <!--单条件查询-->
+    <!--找不到18的同学-->
+    <select id="findShiba" parameterType="vip.coli.aa.Student" resultType="vip.coli.aa.Student">
+        select * from tb_student where 18 > age
+    </select>
+    <select id="findAll" parameterType="vip.coli.aa.Student" resultType="vip.coli.aa.Student">
+        select * from tb_student
+    </select>
+    <select id="findById" parameterType="vip.coli.aa.Student" resultType="vip.coli.aa.Student">
+        select * from tb_student where id = #{id}
+    </select>
+
+    <!--多条件查询-->
+    <!--多条件查询，当用户输入姓名不为空时候，只根据学生姓名查询
+    当用户输入学生姓名为空。而学号不为空时候，只根据学号查询
+    当用户输入学生姓名和学号为空，而专业不为空时候，只根据专业查询
+    当用户输入学生姓名和学号、专业为空，而年龄不为空时候，只根据年龄查询
+    当用户输入学生姓名和学号、专业、年龄为空，而性别不为空时候，只根据性别查询-->
+
+    <select id="findStudent" parameterType="vip.coli.aa.Student" resultType="vip.coli.aa.Student">
+        select*from tb_student where 1 = 1
+        <if test="name != null and name != ''">
+            and name like concat('%',#{name},'%')
+        </if>
+        <if test="xuehao != null and xuehao != ''">
+            and xuehao = #{xuehao}
+        </if>
+        <if test="zhuanye != null and zhuanye != ''">
+            and zhuanye = #{zhuanye}
+        </if>
+        <if test="age != null and age != ''">
+            and age = #{age}
+        </if>
+        <if test="sex != null and sex != ''">
+            and sex = #{sex}
+        </if>
+    </select>
+
+    <!--更新学生数据-->
+    <update id="update" parameterType="vip.coli.aa.Student">
+       update tb_student
+       <set>
+           <if test="name != null and name != ''">
+               name = #{name},
+           </if>
+           <if test="xuehao != null and xuehao != ''">
+               xuehao = #{xuehao},
+           </if>
+           <if test="zhuanye != null and zhuanye !=''">
+               zhuanye = #{zhuanye},
+           </if>
+           <if test="age != null and age !=''">
+               age = #{age},
+           </if>
+           <if test="sex != null and sex !=''">
+               sex = #{sex},
+           </if>
+       </set>
+       where id = #{id}
+   </update>
+
+    <!--删除学生-->
+    <delete id="del" parameterType="int">
+        delete from tb_student where id=#{id}
+    </delete>
+    <!--添加学生-->
+    <insert id="add" parameterType="vip.coli.aa.Student">
+        insert into tb_student(id,name,xuehao,zhuanye,age,sex) values(#{id},#{name},#{xuehao},#{zhuanye},#{age},#{sex});
+    </insert>
+
+</mapper>
